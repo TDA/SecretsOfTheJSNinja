@@ -5,12 +5,19 @@
     <title>Assertions</title>
 </head>
 <body>
+<ul id="assert-results"></ul>
 <script>
     function assert(value, message) {
-      const li = document.createElement("li")
+      const li = document.createElement("li");
       li.className = value ? "pass" : "fail";
-
+      li.appendChild(document.createTextNode(message));
+      var resultsContainer = document.getElementById("assert-results");
+      resultsContainer.appendChild(li);
     }
+
+    assert(true, "Hello World");
+    assert(false, "I am Sai Pc");
+    assert(true, "I really am");
 </script>
 </body>
 </html>
