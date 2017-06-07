@@ -4,15 +4,12 @@
     <meta charset="UTF-8">
     <title>Assertions</title>
     <style>
-        #assert-results {
-            list-style: none;
-        }
 
-        #assert-results li.pass {
+        #assert-results .pass {
             color: green;
         }
 
-        #assert-results li.fail {
+        #assert-results .fail {
             color: red;
         }
 
@@ -21,17 +18,39 @@
 <body>
 <ul id="assert-results"></ul>
 <script>
-    function assert(value, message) {
-      const li = document.createElement("li");
-      li.className = value ? "pass" : "fail";
-      li.appendChild(document.createTextNode(message));
-      var resultsContainer = document.getElementById("assert-results");
-      resultsContainer.appendChild(li);
-    }
+    (function () {
+        var results;
+        this.assert = function (value, message) {
+            console.log("called with", value, message);
+            const li = document.createElement("li");
+            li.className = value ? "pass" : "fail";
+            li.appendChild(document.createTextNode(message));
+            results.appendChild(li);
+            if (!value) {
+                li.parentNode.parentNode.className = "fail";
+            }
+            return li;
+        };
+        this.test = function test(name, fn) {
+            // Get the global results context (ul)
+            results = document.getElementById("assert-results");
+            // Get the context (li) inside the current `test`
+            results = assert(true, name).appendChild(document.createElement("ul"));
+            fn();
+        };
+    })();
 
-    assert(true, "Hello World");
-    assert(false, "I am Sai Pc");
-    assert(true, "I really am");
+    test("A test.", function() {
+        assert(true, "First assertion completed");
+        assert(true, "Second assertion completed");
+        assert(true, "Third assertion completed");
+    });
+
+    test("Second test", function () {
+        assert(true, "Hello World");
+        assert(false, "I am Sai Pc");
+        assert(true, "I really am");
+    });
 </script>
 </body>
 </html>
