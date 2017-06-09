@@ -55,6 +55,15 @@
         assert(false, "I am Sai Pc");
         assert(true, "I really am");
     });
+
+    test("Third test", function () {
+        // this is due to the line where we explicitly set results to #assert-results
+        test("Sub test doesnt work haha", function () {
+            assert(true, "Hello World");
+            assert(false, "I am Sai Pc");
+        });
+        assert(true, "I really am");
+    });
 </script>
 </body>
 </html>
