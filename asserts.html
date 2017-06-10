@@ -5,14 +5,22 @@
     <title>Assertions</title>
     <style>
 
-        #assert-results .pass {
+        #assert-results li.pass {
             color: green;
         }
 
-        #assert-results .fail {
+        #assert-results li.fail {
             color: red;
         }
 
+        #assert-results .test-group {
+            cursor: pointer;
+            overflow-y: hidden;
+        }
+
+        #assert-results .test-group ul {
+            transition: height 500ms ease;
+        }
     </style>
 </head>
 <body>
@@ -21,7 +29,6 @@
     (function () {
         var results;
         this.assert = function (value, message) {
-            console.log("called with", value, message);
             const li = document.createElement("li");
             li.className = value ? "pass" : "fail";
             li.appendChild(document.createTextNode(message));
@@ -64,6 +71,24 @@
         });
         assert(true, "I really am");
     });
+
+    window.addEventListener('load', function () {
+        var test_groups = document.getElementsByClassName('test-group');
+        for (var i = 0; i < test_groups.length; i++) {
+            console.log(test_groups[i]);
+            test_groups[i].addEventListener('click', function () {
+                var child = this.lastChild;
+                var scrollHeight = child.scrollHeight;
+                if (this.classList.contains('hide-children')) {
+                    // px is important, without the unit, it ignores the number
+                    child.style.height = scrollHeight + "px";
+                } else {
+                    child.style.height = 0;
+                }
+                this.classList.toggle('hide-children');
+            })
+        }
+    })
 </script>
 </body>
 </html>
