@@ -88,7 +88,13 @@
                 this.classList.toggle('hide-children');
             })
         }
-    })
+    });
+
+    test("some test", function () {
+      var text = 'Domo arigato!';
+      assert(useless(function(){ return text; }) === text,
+        "The useless function works! " + text);
+    });
 </script>
 </body>
 </html>
