@@ -8,3 +8,7 @@ array.sort(function (value1, value2) {
   return value1 > value2;
 });
 console.log(array);
+array.sort(function () {
+  return 1; // return true is essentially array.reverse :O :O
+});
+console.log(array);
