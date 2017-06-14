@@ -95,6 +95,29 @@
       assert(wieldSword.name === "swingsSword", "wieldSword() has a name");
     });
 
+    test("Testing scopes", function () {
+      function outer(){
+        // functions are forward-referenced (hoisted) while variables are not!!
+        assert(typeof outer==='function', "outer() is in scope");
+        assert(typeof inner==='function', "inner() is in scope");
+        assert(typeof a === 'number', "a is in scope");
+        assert(typeof b === 'number', "b is in scope");
+        assert(typeof c === 'number', "c is in scope");
+        var a = 1;
+        function inner(){ /* does nothing */ }
+        var b = 2;
+        if (a == 1) {
+          var c = 3;
+        }
+      }
+      outer();
+      assert(typeof outer==='function', "outer() is in scope");
+      assert(typeof inner==='function', "inner() is in scope");
+      assert(typeof a === 'number', "a is in scope");
+      assert(typeof b === 'number', "b is in scope");
+      assert(typeof c === 'number', "c is in scope");
+    });
+
 </script>
 </body>
 </html>
