@@ -17,26 +17,22 @@ function take2(users, ccName, mail) {
   return users;
 }
 
-users1 = {
-  'cc': ['something']
-};
+function getObjectWithCc() {
+  return {
+    'cc': ['something']
+  };
+}
 
-users1_copy = {
-  'cc': ['something']
-};
-
-users2 = {
-};
-
-users2_copy = {
-};
+function getObject() {
+  return {};
+}
 
 var mail = 'hello to everyone';
 
-console.log(take(users1, 'cc', mail));
-console.log(take2(users1_copy, 'cc', mail));
-console.log(take2(users2, 'cc', mail));
-console.log(take(users2_copy, 'cc', mail));
+console.log(take(getObjectWithCc(), 'cc', mail));
+console.log(take2(getObjectWithCc(), 'cc', mail));
+console.log(take2(getObject(), 'cc', mail));
+console.log(take(getObject(), 'cc', mail));
 
 (function () {
   var results;
