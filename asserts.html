@@ -89,6 +89,10 @@
       assert(typeof window.isDeadly === "function", "isDeadly() defined");
       assert(window.isDeadly.name === "", "isDeadly() has no name");
 
+      // More weirdness ahead, not anon, and the function name is returned, not variable name
+      var wieldSword = function swingsSword() { return true; };
+      assert(typeof wieldSword === "function", "wieldSword() defined");
+      assert(wieldSword.name === "swingsSword", "wieldSword() has a name");
     });
 
 </script>
