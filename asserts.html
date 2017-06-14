@@ -73,10 +73,23 @@
       assert(true, "I really am");
     });
 
-    function isNimble(){ return true; }
-    // Since the test group is not reset, this will belong to the last one
-    assert(typeof window.isNimble === "function", "isNimble() defined");
-    assert(isNimble.name === "isNimble", "isNimble() has a name");
+    test("Testing functions", function () {
+      function isNimble(){ return true; }
+      // If the test group is not reset, this will belong to the last one
+      assert(typeof isNimble === "function", "isNimble() defined");
+      assert(isNimble.name === "isNimble", "isNimble() has a name");
+
+      // Not what you would expect, even though anon, it contains a name
+      var canFly = function(){ return true; };
+      assert(typeof canFly === "function", "canFly() defined");
+      assert(canFly.name === "canFly", "canFly() has a name");
+
+      // Not what you would expect, anon and it has no name since its defined on the global
+      window.isDeadly = function(){ return true; };
+      assert(typeof window.isDeadly === "function", "isDeadly() defined");
+      assert(window.isDeadly.name === "", "isDeadly() has no name");
+
+    });
 
 </script>
 </body>
