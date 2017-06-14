@@ -73,6 +73,11 @@
       assert(true, "I really am");
     });
 
+    function isNimble(){ return true; }
+    // Since the test group is not reset, this will belong to the last one
+    assert(typeof window.isNimble === "function", "isNimble() defined");
+    assert(isNimble.name === "isNimble", "isNimble() has a name");
+
 </script>
 </body>
 </html>
