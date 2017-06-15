@@ -12,3 +12,16 @@ array.sort(function () {
   return 1; // return true is essentially array.reverse :O :O
 });
 console.log(array);
+
+// regular function
+function some_func() {
+  console.log(this);
+}
+
+some_func();
+
+var o = {};
+o.whatever = function(){
+  console.log(this);
+};
+o.whatever();
