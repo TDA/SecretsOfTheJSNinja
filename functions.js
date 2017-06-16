@@ -20,8 +20,17 @@ function some_func() {
 
 some_func();
 
+// This though, is a method.
 var o = {};
 o.whatever = function(){
   console.log(this);
 };
 o.whatever();
+
+// This is a constructor
+function Creep() {
+  return this;
+}
+
+a_creep = new Creep();
+console.log(a_creep);
