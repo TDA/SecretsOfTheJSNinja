@@ -15,21 +15,23 @@ console.log(array);
 
 // regular function
 function some_func() {
-  console.log(this);
+  //console.log(this);
 }
 
 some_func();
 
 // This though, is a method.
 var o = {};
-o.whatever = function(){
-  console.log(this);
+o.whatever = function() {
+  return this;
 };
-o.whatever();
+// returns the object that owns the method (not the method itself)
+console.log(o.whatever().whatever());
+console.log(o.whatever().whatever().whatever().hasOwnProperty('whatever'));
 
 // This is a constructor
 function Creep() {
-  return this;
+  this.skulk = function() { return this; };
 }
 
 a_creep = new Creep();
