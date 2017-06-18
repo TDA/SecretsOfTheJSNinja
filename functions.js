@@ -36,3 +36,21 @@ function Creep() {
 
 a_creep = new Creep();
 console.log(a_creep);
+b_creep = new Creep();
+
+
+function juggle() {
+  var result = 0;
+  for(var n = 0; n < arguments.length; n++) {
+    result += arguments[n];
+  }
+  this.result = result;
+}
+
+// This would change the internal state of the a_creep
+juggle.apply(a_creep, [1, 2, 3]);
+console.log(a_creep);
+
+// call is the same as apply, except that the args are passed in separately
+juggle.call(a_creep, 4, 5, 6);
+console.log(a_creep);
