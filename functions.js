@@ -54,3 +54,21 @@ console.log(a_creep);
 // call is the same as apply, except that the args are passed in separately
 juggle.call(a_creep, 4, 5, 6);
 console.log(a_creep);
+
+// Practical application of these methods to bind context to a function
+function forEach(list, callback) {
+  for (var n = 0; n < list.length; n++) {
+    // For each element, bind the callback with that element,
+    // and pass in the index to the callback as an argument
+    callback.call(list[n], n);
+  }
+}
+
+// Now we can use it like a traditional arrays.forEach, but as a function call
+var array = ['a', 'b', 'c'];
+forEach(array, function (index) {
+  // check binding
+  console.log(this);
+  // print item
+  console.log(array[index]);
+});
