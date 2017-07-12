@@ -16,8 +16,16 @@ function isPalindrome(text) {
 console.log(isPalindrome('saipc'));
 console.log(isPalindrome('saias'));
 
-function chirp(n) {
-  return n > 1 ? chirp(n - 1) + '-chirp' : 'chirp';
-}
+var ninja = {
+  chirp: function(n) {
+    return n > 1 ? ninja.chirp(n - 1) + '-chirp' : 'chirp';
+  }
+};
 
-console.log(chirp(3));
+console.log(ninja.chirp(3));
+
+var samurai = {
+  chirp: ninja.chirp
+};
+
+console.log(samurai.chirp(3));
