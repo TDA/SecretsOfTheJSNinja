@@ -29,3 +29,13 @@ var samurai = {
 };
 
 console.log(samurai.chirp(3));
+
+// Now if we change the value of the original chirp,
+// samurai ALSO gets affected
+ninja.chirp = {};
+try {
+  console.log(samurai.chirp(3));
+} catch (e) {
+  console.log(e);
+}
+
