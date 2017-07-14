@@ -39,3 +39,22 @@ try {
   console.log(e);
 }
 
+// make it `this` instead of ninja.chirp
+ninja.chirp = function(n) {
+  return n > 1 ? this.chirp(n - 1) + '-chirp' : 'chirp';
+};
+
+samurai = {
+  chirp: ninja.chirp
+};
+console.log(samurai.chirp(3));
+
+// Now if we change the value of the original chirp,
+// samurai DOES NOT get affected
+ninja.chirp = {};
+try {
+  console.log(samurai.chirp(3));
+} catch (e) {
+  console.log('I am alright, I dont get here');
+  console.log(e);
+}
