@@ -58,3 +58,16 @@ try {
   console.log('I am alright, I dont get here');
   console.log(e);
 }
+
+// Other ways to achieve the same thing
+chirp = function someName(n) {
+  return n > 1 ? someName.chirp(n - 1) + '-chirp' : 'chirp';
+};
+
+// but inline functions aren't available outside the initial scope
+try {
+  console.log(someName);
+} catch (e) {
+  console.log('oops');
+}
+
