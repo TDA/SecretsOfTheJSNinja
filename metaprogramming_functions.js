@@ -4,3 +4,8 @@
 
 // Objective is to write a function that can write X more functions.
 // No idea how to go about this, but can try googling.
+
+arr = ['fun_a', 'fun_b', 'fun_c'];
+arr.forEach(function (el) {
+  console.log(el);
+});
