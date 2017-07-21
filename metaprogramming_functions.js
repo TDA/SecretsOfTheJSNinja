@@ -7,5 +7,6 @@
 
 arr = ['fun_a', 'fun_b', 'fun_c'];
 arr.forEach(function (el) {
-  console.log(el);
+  var x = new Function('return function() { console.log(this.name) }');
+  console.log(x);
 });
