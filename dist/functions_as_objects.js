@@ -9,8 +9,8 @@
 var store = {
   nextId: 1,
   cache: {},
-  add: function (fn) {
-    if(!fn.id) {
+  add: function add(fn) {
+    if (!fn.id) {
       fn.id = this.nextId++;
       // this is assignment and verifying if assignment passes
       // its definitely harder to read tho haha :)
@@ -18,7 +18,7 @@ var store = {
       // but not equivalent to new Boolean(expr), as that is an object
       // Objects are truthy even if they contain falsy values
       // !! false === Boolean(false) !== new Boolean(false)
-      return !! (this.cache[fn.id] = fn);
+      return !!(this.cache[fn.id] = fn);
     } else {
       return false;
     }
@@ -40,7 +40,6 @@ function ninja2() {
 console.log(store.add(ninja2));
 console.log(store);
 
-
 // This is memoization function that has a cache and uses that to store
 // the previously computed sums, pretty straightforward just like other languages
 
@@ -51,8 +50,8 @@ function isPrime(n) {
   if (isPrime.cache[n]) {
     return isPrime.cache[n];
   }
-  let prime = n != 1;
-  for (let i = 2; i <= Math.sqrt(n); i++) {
+  var prime = n != 1;
+  for (var i = 2; i <= Math.sqrt(n); i++) {
     if (n % i === 0) {
       prime = false;
     }
@@ -64,3 +63,4 @@ console.log(isPrime(4));
 console.log(isPrime(9));
 console.log(isPrime(5));
 console.log(isPrime.cache);
+//# sourceMappingURL=functions_as_objects.js.map
