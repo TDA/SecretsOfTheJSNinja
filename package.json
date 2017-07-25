@@ -1,0 +1,19 @@
+{
+  "name": "secrets_of_js_ninja",
+  "version": "1.0.0",
+  "description": "Just a playground for JS stuff",
+  "main": "functions.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TDA/SecretsOfTheJSNinja.git"
+  },
+  "author": "Sai Pc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TDA/SecretsOfTheJSNinja/issues"
+  },
+  "homepage": "https://github.com/TDA/SecretsOfTheJSNinja#readme"
+}
