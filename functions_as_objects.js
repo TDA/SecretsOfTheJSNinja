@@ -51,7 +51,7 @@ function isPrime(n) {
   if (isPrime.cache[n]) {
     return isPrime.cache[n];
   }
-  let prime = n != 1;
+  let prime = n !== 1;
   for (let i = 2; i <= Math.sqrt(n); i++) {
     if (n % i === 0) {
       prime = false;
@@ -64,3 +64,11 @@ console.log(isPrime(4));
 console.log(isPrime(9));
 console.log(isPrime(5));
 console.log(isPrime.cache);
+
+function getElementsMemoized(selector) {
+  if (getElementsMemoized.cache) {
+    getElementsMemoized.cache = {};
+  }
+  // Missing Ruby's ||= here haha
+  return getElementsMemoized.cache[selector] = getElementsMemoized.cache[selector] || document.querySelectorAll(selector);
+}
