@@ -66,9 +66,11 @@ console.log(isPrime(5));
 console.log(isPrime.cache);
 
 function getElementsMemoized(selector) {
+  console.log(selector);
   if (getElementsMemoized.cache) {
     getElementsMemoized.cache = {};
   }
+  console.log(getElementsMemoized.cache);
   // Missing Ruby's ||= here haha
   return getElementsMemoized.cache[selector] = getElementsMemoized.cache[selector] || document.querySelectorAll(selector);
 }

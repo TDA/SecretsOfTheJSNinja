@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mimicking Arrays</title>
+</head>
+<body>
+<label for="first">First: </label> <input type="text" id="first">
+<label for="second">Second: </label><input type="text" id="second">
+<script src="functions_as_objects.js"></script>
+<script>
+    let elements = {
+      length: 0,
+
+      add: function (elem) {
+        Array.prototype.add.call(this, elem);
+      },
+
+      gather: function (selector) {
+        this.add(getElementsMemoized(selector));
+      }
+    };
+</script>
+</body>
+</html>
