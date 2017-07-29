@@ -67,7 +67,7 @@ console.log(isPrime.cache);
 
 function getElementsMemoized(selector) {
   console.log(selector);
-  if (getElementsMemoized.cache) {
+  if (! getElementsMemoized.cache) {
     getElementsMemoized.cache = {};
   }
   console.log(getElementsMemoized.cache);
