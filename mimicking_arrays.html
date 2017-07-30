@@ -7,6 +7,10 @@
 <body>
 <label for="first">First: </label> <input type="text" id="first">
 <label for="second">Second: </label><input type="text" id="second">
+<ul id="assert-results"></ul>
+
+
+<script src="lib.js"></script>
 <script src="functions_as_objects.js"></script>
 <script>
     let elements = {
@@ -20,6 +24,24 @@
         this.add(getElementsMemoized(selector));
       }
     };
+
+    elements.gather('#first');
+    elements.gather('#second');
+    console.log(elements);
+
+    function smallest(array){
+      return Math.min.apply(Math, array);
+    }
+
+    function largest(array){
+      return Math.max.apply(Math, array);
+    }
+
+    test("Testing Array mimicking", function () {
+      assert(smallest([0, 1, 2, 3]) === 0, "Located the smallest value.");
+      assert(largest([0, 1, 2, 3]) === 3, "Located the largest value.");
+    });
+
 </script>
 </body>
 </html>
