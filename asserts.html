@@ -29,12 +29,12 @@
 <script>
 
     window.addEventListener('load', function () {
-        var test_groups = document.getElementsByClassName('test-group');
-        for (var i = 0; i < test_groups.length; i++) {
+        let test_groups = document.getElementsByClassName('test-group');
+        for (let i = 0; i < test_groups.length; i++) {
             console.log(test_groups[i]);
             test_groups[i].addEventListener('click', function () {
-                var child = this.lastChild;
-                var scrollHeight = child.scrollHeight;
+                let child = this.lastChild;
+                let scrollHeight = child.scrollHeight;
                 if (this.classList.contains('hide-children')) {
                     // px is important, without the unit, it ignores the number
                     child.style.height = scrollHeight + "px";
@@ -47,7 +47,7 @@
     });
 
     test("some test", function () {
-      var text = 'Domo arigato!';
+      let text = 'Domo arigato!';
       assert((function(){ return text; })() === text,
         "The useless function works! " + text);
     });
@@ -80,7 +80,7 @@
       assert(isNimble.name === "isNimble", "isNimble() has a name");
 
       // Not what you would expect, even though anon, it contains a name
-      var canFly = function(){ return true; };
+      let canFly = function(){ return true; };
       assert(typeof canFly === "function", "canFly() defined");
       assert(canFly.name === "canFly", "canFly() has a name");
 
@@ -90,7 +90,7 @@
       assert(window.isDeadly.name === "", "isDeadly() has no name");
 
       // More weirdness ahead, not anon, and the function name is returned, not variable name
-      var wieldSword = function swingsSword() { return true; };
+      let wieldSword = function swingsSword() { return true; };
       assert(typeof wieldSword === "function", "wieldSword() defined");
       assert(wieldSword.name === "swingsSword", "wieldSword() has a name");
     });
@@ -103,11 +103,11 @@
         assert(typeof a === 'number', "a is in scope");
         assert(typeof b === 'number', "b is in scope");
         assert(typeof c === 'number', "c is in scope");
-        var a = 1;
+        let a = 1;
         function inner(){ /* does nothing */ }
-        var b = 2;
+        let b = 2;
         if (a === 1) {
-          var c = 3;
+          let c = 3;
         }
       }
       outer();
