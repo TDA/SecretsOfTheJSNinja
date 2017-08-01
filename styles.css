@@ -1,0 +1,16 @@
+#assert-results li.pass {
+    color: green;
+}
+
+#assert-results li.fail {
+    color: red;
+}
+
+#assert-results .test-group {
+    cursor: pointer;
+    overflow-y: hidden;
+}
+
+#assert-results .test-group ul {
+    transition: height 500ms ease;
+}
