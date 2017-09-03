@@ -3,10 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Simple Closures</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<ul id="assert-results"></ul>
 
 <script src="lib.js"></script>
 
+<script>
+    var outerValue = 'ninja';
+
+    function outerFunction() {
+      test('Can we see the ninja?', function () {
+        assert(outerValue === 'ninja', 'I can see this ninja');
+      });
+    }
+
+    outerFunction();
+</script>
 </body>
 </html>

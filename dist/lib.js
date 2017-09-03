@@ -1,12 +1,14 @@
+'use strict';
+
 /**
  * Created by schandramouli on 6/10/17.
  */
 function take(users, ccName, mail) {
 
   if (users[ccName]) {
-    users[ccName].push(mail)
+    users[ccName].push(mail);
   } else {
-    users[ccName] = [mail]
+    users[ccName] = [mail];
   }
   return users;
 }
@@ -37,7 +39,7 @@ var mail = 'hello to everyone';
 (function () {
   var results;
   this.assert = function (value, message) {
-    const li = document.createElement("li");
+    var li = document.createElement("li");
     li.className = value ? "pass" : "fail";
     li.appendChild(document.createTextNode(message));
     results.appendChild(li);
@@ -58,3 +60,4 @@ var mail = 'hello to everyone';
     fn();
   };
 })();
+//# sourceMappingURL=lib.js.map
