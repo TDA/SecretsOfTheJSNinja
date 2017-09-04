@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Closures - AJAX</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<body>
+<ul id="assert-results"></ul>
+<div id="testSubject"></div>
+<button type="button" id="testButton">Go!</button>
+
+<script src="lib.js"></script>
+
+<script>
+  $('#testButton').click(function(){
+    var $elem = $("#testSubject");
+
+    $elem.html("Loading...");
+
+    $.ajax({
+      url: "styles.css",
+      success: function(html) {
+        test("Testing", function tester() {
+          assert($elem, "We can see $elem, via the closure for this callback.");
+          $elem.html(html);
+        });
+      }
+    });
+  });
+</script>
+</body>
+</html>
