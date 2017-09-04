@@ -12,6 +12,7 @@
 
 <script>
     var outerValue = 'ninja';
+    var later;
 
     function outerFunction() {
       test('Can we see the ninja?', function () {
@@ -20,6 +21,25 @@
     }
 
     outerFunction();
+
+    function outerFunction2() {
+      var innerValue = 'samurai';
+
+      function innerFunction() {
+        test('Can we see the ninja?', function () {
+          assert(outerValue === 'ninja', 'I can see this ninja');
+          assert(innerValue === 'samurai', 'I can see this samurai');
+        });
+      }
+
+      innerFunction();
+      later = innerFunction;
+    }
+
+    outerFunction2();
+    // voila! inner function not in scope at this point, but will still
+    // be available due to the extremely useful bubble - closure
+    later();
 </script>
 </body>
 </html>
