@@ -23,23 +23,43 @@
     outerFunction();
 
     function outerFunction2() {
-      var innerValue = 'samurai';
-
-      function innerFunction() {
+      console.log(innerValue); // => OUCH! not available LOL
+      function innerFunction(paramValue) {
+        console.log(innerValue); // => Yes available !!!
         test('Can we see the ninja?', function () {
           assert(outerValue === 'ninja', 'I can see this ninja');
           assert(innerValue === 'samurai', 'I can see this samurai');
+          assert(paramValue, 'I can see this wakizashi');
+          assert(tooLate, 'I can see this ronin');
         });
       }
 
+      var innerValue = 'samurai';
       innerFunction();
       later = innerFunction;
+      console.log(tooLate); // => Same reason, ronin is available here
     }
 
+    test('Can outer see ronin?', function () {
+      console.log(tooLate);
+      assert(tooLate, 'Outer not seeing ronin?');
+    });
+
+    var tooLate = 'ronin';
+
+    // ZOMG!!! Hoisting works only for inner scopes (closures), not in same scope
+    // In the same scope, variables not yet defined cannot be forward-referenced.
+    // Check here, innerValue was forward-referenced, but inside a closure //=> value is seen
+    // tooLate was forward-referenced, but in same scope //=> value is undefined
+
+    test('Can outer see ronin?', function () {
+      console.log(tooLate);
+      assert(tooLate, 'Outer not seeing ronin?');
+    });
     outerFunction2();
     // voila! inner function not in scope at this point, but will still
     // be available due to the extremely useful bubble - closure
-    later();
+    later('wakizashi');
 </script>
 </body>
 </html>
