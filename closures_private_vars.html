@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Closures - Private Variables</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<ul id="assert-results"></ul>
+
+<script src="lib.js"></script>
+
+<script>
+    function Ninja() {
+      var feints = 0;
+
+      this.getFeints = function () {
+        return feints;
+      };
+
+      this.feint = function () {
+        feints++;
+      };
+    }
+
+    ninja1 = new Ninja();
+    ninja1.feint();
+    ninja1.feint();
+    ninja1.feint();
+    // Look how beautifully state is managed :D
+    console.log(ninja1.getFeints());
+
+    test("Private Ninja", function () {
+      assert(ninja1.getFeints() === 3, 'Ninja feinted 3 times');
+      assert(ninja1.feints === undefined, "And we cannot access Ninja's private vars");
+    })
+</script>
+</body>
+</html>
