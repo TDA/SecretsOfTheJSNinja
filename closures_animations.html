@@ -19,6 +19,11 @@
   function animateIt(elementId) {
     var elem = document.getElementById(elementId);
     var tick = 0;
+    // Why is the closure needed?
+    // After the animation starts (the setInterval anonymous
+    // function), it wouldnt have access to these variables
+    // otherwise. We use the closure to give it those variables
+    // magically.
     var timer = setInterval(function(){
       if (tick < 100) {
         elem.style.left = elem.style.top = tick + "px";
