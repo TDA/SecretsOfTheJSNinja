@@ -37,6 +37,10 @@
         })
       }
     }, 10);
+    // What about without a closure?
+    // Moving these out of the function means that, every time you call this
+    // function, you will to hold the state in some vars, so 3 func's => 3 * 3 vars
+    // With these, each of the invocations gets its own encapsulated state.
   }
 
   animateIt('box');
