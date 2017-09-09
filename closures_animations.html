@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Closures for Animations</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
         #box {
             position: relative;
@@ -13,6 +14,7 @@
 <div id="box">Yayy!! I am gonna be animated.</div>
 <ul id="assert-results"></ul>
 
+<button id="test-button">Click Me!</button>
 
 <script src="lib.js"></script>
 <script type="text/javascript">
@@ -44,6 +46,18 @@
   }
 
   animateIt('box');
+
+
+  var button = {
+    clicked: false,
+    click: function() {
+      console.log(this);
+      this.clicked = true;
+      assert(button.clicked,"The button has been clicked"); // can be changed to `this` to get the right context
+    }
+  };
+  var elem = document.getElementById("test-button");
+  elem.addEventListener("click", button.click, false);
 </script>
 </body>
 </html>
