@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Currying Functions</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<ul id="assert-results"></ul>
+
+<script src="lib.js"></script>
+<script type="text/javascript">
+  String.prototype.csv = String.prototype.split.partial(/,\s*/);
+  var results = ("Mugan, Jin, Fuu").csv();
+
+  test('does csv work?', function () {
+    assert(results[0] === "Mugan" &&
+      results[1] === "Jin" &&
+      results[2] === "Fuu",
+      "The text values were split properly");
+  });
+
+</script>
+</body>
+</html>
