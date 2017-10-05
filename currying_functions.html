@@ -10,6 +10,21 @@
 
 <script src="lib.js"></script>
 <script type="text/javascript">
+
+  // Let's write a currying function that can pre-fill
+  // args for other methods. Kinda like writing a thin
+  // wrapper, but generic enough to be re-used. This
+  // will allow this method to be called on anything.
+
+  Function.prototype.partial = function () {
+    let args = Array.prototype.slice.call(arguments);
+    let fn = this;
+
+    return function () {
+      return fn.apply(this, args.concat(Array.prototype.slice.call(arguments)));
+    }
+  };
+
   String.prototype.csv = String.prototype.split.partial(/,\s*/);
   var results = ("Mugan, Jin, Fuu").csv();
 
@@ -20,9 +35,6 @@
       "The text values were split properly");
   });
 
-  // Let's write a currying function that can pre-fill
-  // args for other methods. Kinda like writing a thin
-  // wrapper, but generic enough to be re-used.
 </script>
 </body>
 </html>
