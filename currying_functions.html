@@ -17,16 +17,19 @@
   // will allow this method to be called on anything.
 
   Function.prototype.partial = function () {
+    // Cache the pre-filled args when the function is first defined.
     let args = Array.prototype.slice.call(arguments);
+    // Cache the context
     let fn = this;
 
     return function () {
+      // Execute the function with the pre-filled args from before, using the same context
       return fn.apply(this, args.concat(Array.prototype.slice.call(arguments)));
     }
   };
 
   String.prototype.csv = String.prototype.split.partial(/,\s*/);
-  var results = ("Mugan, Jin, Fuu").csv();
+  let results = ("Mugan, Jin, Fuu").csv();
 
   test('does csv work?', function () {
     assert(results[0] === "Mugan" &&
