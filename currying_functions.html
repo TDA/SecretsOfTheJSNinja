@@ -38,6 +38,22 @@
       "The text values were split properly");
   });
 
+  // Assuming this also does pretty much the same thing without
+  // the additional logic. Thin wrapper.
+  String.prototype.csv_thin_wrapper = function () {
+    let args = Array.prototype.slice.call(arguments);
+    return this.split(/,\s*/, args);
+  };
+
+  let results_thin_wrapper = ("Mugan, Jin, Fuu").csv_thin_wrapper();
+
+  test('does csv thin wrapper work?', function () {
+    assert(results_thin_wrapper[0] === "Mugan" &&
+      results_thin_wrapper[1] === "Jin" &&
+      results_thin_wrapper[2] === "Fuu",
+      "The text values were split properly");
+  });
+
 </script>
 </body>
 </html>
