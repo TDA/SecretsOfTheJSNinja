@@ -24,12 +24,14 @@
 
     return function () {
       // Execute the function with the pre-filled args from before, using the same context
+      console.log("Inside the curry");
+      console.log(args.concat(Array.prototype.slice.call(arguments)));
       return fn.apply(this, args.concat(Array.prototype.slice.call(arguments)));
     }
   };
 
   String.prototype.csv = String.prototype.split.partial(/,\s*/);
-  let results = ("Mugan, Jin, Fuu").csv();
+  let results = ("Mugan, Jin, Fuu").csv("a", "b");
 
   test('does csv work?', function () {
     assert(results[0] === "Mugan" &&
@@ -42,10 +44,12 @@
   // the additional logic. Thin wrapper.
   String.prototype.csv_thin_wrapper = function () {
     let args = Array.prototype.slice.call(arguments);
+    console.log("Inside the thin wrapper");
+    console.log(args);
     return this.split(/,\s*/, args);
   };
 
-  let results_thin_wrapper = ("Mugan, Jin, Fuu").csv_thin_wrapper();
+  let results_thin_wrapper = ("Mugan, Jin, Fuu").csv_thin_wrapper("a", "b");
 
   test('does csv thin wrapper work?', function () {
     assert(results_thin_wrapper[0] === "Mugan" &&
