@@ -16,6 +16,10 @@
   // wrapper, but generic enough to be re-used. This
   // will allow this method to be called on anything.
 
+  // Initial thoughts are still the same, use thin wrappers
+  // if you are not writing a library, use the curry if you
+  // are making it generic enough.
+
   Function.prototype.partial = function () {
     // Cache the pre-filled args when the function is first defined.
     let args = Array.prototype.slice.call(arguments);
