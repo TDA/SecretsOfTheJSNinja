@@ -44,9 +44,7 @@ console.log(store);
 // the previously computed sums, pretty straightforward just like other languages
 
 function isPrime(n) {
-  if (!isPrime.cache) {
-    isPrime.cache = {};
-  }
+  isPrime.cache = isPrime.cache || {};
   if (isPrime.cache[n]) {
     return isPrime.cache[n];
   }
