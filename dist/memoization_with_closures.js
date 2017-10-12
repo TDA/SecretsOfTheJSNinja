@@ -1,7 +1,13 @@
 'use strict';
 
-// Regular isPrime that has no memo
+// Let's write a memo function for all functions
 
+Function.prototype.memoized = function (key) {
+  this._values = this._values || {};
+  return this._values[key] !== undefined ? this._values[key] : this._values[key] = this.apply(this, arguments);
+};
+
+// Regular isPrime that has no memo
 function isPrimeMemo(num) {
   var prime = num !== 1;
   for (var i = 2; i < Math.sqrt(num); i++) {
