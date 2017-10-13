@@ -21,4 +21,9 @@ function isPrimeMemo(num) {
 
 console.log(isPrimeMemo(5));
 console.log(isPrimeMemo(55));
+
+console.log(isPrimeMemo.memoized(5));
+console.log(isPrimeMemo.memoized(55));
+console.log(isPrimeMemo.memoized._values);
+console.log(isPrimeMemo._values);
 //# sourceMappingURL=memoization_with_closures.js.map
