@@ -9,7 +9,7 @@ Function.prototype.memoized = function(key){
 };
 
 // Regular isPrime that has no memo
-function isPrimeMemo(num) {
+function isPrimePlain(num) {
   let prime = num !== 1;
   for (let i = 2; i < Math.sqrt(num); i++) {
     if (num % i === 0) {
@@ -20,14 +20,14 @@ function isPrimeMemo(num) {
   return prime;
 }
 
-console.log(isPrimeMemo(5));
-console.log(isPrimeMemo(55));
+console.log(isPrimePlain(5));
+console.log(isPrimePlain(55));
 
 // By overriding the function prototype, we can add our own
 // memoization to an existing function, two problems with this though:
 // 1. Caller needs to know this new method
 // 2. The cache is stored on the original method, potentially confusing noobs who call another function
-console.log(isPrimeMemo.memoized(5));
-console.log(isPrimeMemo.memoized(55));
-console.log(isPrimeMemo.memoized._values);
-console.log(isPrimeMemo._values);
+console.log(isPrimePlain.memoized(5));
+console.log(isPrimePlain.memoized(55));
+console.log(isPrimePlain.memoized._values);
+console.log(isPrimePlain._values);
