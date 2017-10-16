@@ -31,3 +31,13 @@ console.log(isPrimePlain.memoized(5));
 console.log(isPrimePlain.memoized(55));
 console.log(isPrimePlain.memoized._values);
 console.log(isPrimePlain._values);
+
+// To fix this, lets wrap isPrimePlain in a closure, bind the scope
+// to memoized(), and call it as though nothing extra is happening
+Function.prototype.memoize = function () {
+  var fn = this;
+  return function () {
+    return fn.memoized.apply(fn, arguments)
+  }
+};
+var isPrimeMemoized = isPrimePlain.memoize();
