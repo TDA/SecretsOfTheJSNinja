@@ -35,6 +35,10 @@ console.log(isPrimePlain._values);
 // to memoized(), and call it as though nothing extra is happening
 Function.prototype.memoize = function () {
   var fn = this;
+  // Pretty much return the function wrapped with a call to the memoized() version
+  // Look at how the closure enables us to do something that is otherwise not very
+  // straightforward. It feels like all we are doing is calling the function wrapped
+  // in another, but the context binding is essential and only possible due to closures.
   return function () {
     return fn.memoized.apply(fn, arguments);
   };
