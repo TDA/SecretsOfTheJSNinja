@@ -44,4 +44,10 @@ Function.prototype.memoize = function () {
   };
 };
 var isPrimeMemoized = isPrimePlain.memoize();
+
+console.log(isPrimeMemoized(5));
+console.log(isPrimeMemoized(55));
+// Unfortunate side effect, we lose access to the actual cache
+// store, but that is natural, as its supposed to be internal
+console.log(isPrimeMemoized._values);
 //# sourceMappingURL=memoization_with_closures.js.map
