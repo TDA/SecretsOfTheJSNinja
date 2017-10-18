@@ -1,0 +1,1 @@
+{"version":3,"sources":["../iife_parameter_naming.js"],"names":[],"mappings":"AAAA;;AAEA,IAAI,IAAI,KAAR;;AAEA,CAAC,UAAU,CAAV,EAAa;AACZ,UAAQ,GAAR,CAAY,CAAZ;AACD,CAFD,EAEG,SAFH;;AAIA,QAAQ,GAAR,CAAY,CAAZ","file":"iife_parameter_naming.js","sourcesContent":["'use strict';\n\nlet $ = 'lol';\n\n(function ($) {\n  console.log($);\n})('but ha!');\n\nconsole.log($);"]}
