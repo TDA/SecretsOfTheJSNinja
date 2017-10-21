@@ -5,6 +5,17 @@
   <title>IIFE Closures</title>
 </head>
 <body>
+<div>sai</div>
+<div>boy</div>
+
+<script>
+  var divs = document.getElementsByTagName("div");
+  for (var i = 0; i < divs.length; i++) {
+    divs[i].addEventListener("click", function () {
+      alert("divs #" + i + " was clicked.");
+    }, false);
+  }
+</script>
 
 </body>
 </html>
