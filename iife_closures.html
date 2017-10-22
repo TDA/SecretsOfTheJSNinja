@@ -9,6 +9,10 @@
 <div>boy</div>
 
 <script>
+
+  // The problem here is that there is no closure for the divs and
+  // thus the value of i -> 2, thereby giving all the divs the same value
+  // This was my *exact* Mozilla internship question asked by Zach Carter :)
   var divs = document.getElementsByTagName("div");
   for (var i = 0; i < divs.length; i++) {
     divs[i].addEventListener("click", function () {
