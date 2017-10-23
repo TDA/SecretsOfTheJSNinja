@@ -9,15 +9,23 @@
 <div>boy</div>
 
 <script>
+  let divs = document.getElementsByTagName("div");
 
   // The problem here is that there is no closure for the divs and
   // thus the value of i -> 2, thereby giving all the divs the same value
   // This was my *exact* Mozilla internship question asked by Zach Carter :)
-  var divs = document.getElementsByTagName("div");
-  for (var i = 0; i < divs.length; i++) {
+  for (let i = 0; i < divs.length; i++) {
     divs[i].addEventListener("click", function () {
       alert("divs #" + i + " was clicked.");
     }, false);
+  }
+
+  for (let i = 0; i < divs.length; i++) {
+    (function (num) {
+      divs[num].addEventListener("click", function () {
+        console.log("divs #" + num + " was clicked.");
+      }, false)
+    })(i);
   }
 </script>
 
