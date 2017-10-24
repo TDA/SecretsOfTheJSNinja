@@ -20,6 +20,9 @@
     }, false);
   }
 
+  // To fix this, just add a closure to scope out the var reference, then
+  // immediately invoke it with IIFE, passing in the value so that the
+  // value is used instead of the reference  :)
   for (let i = 0; i < divs.length; i++) {
     (function (num) {
       divs[num].addEventListener("click", function () {
