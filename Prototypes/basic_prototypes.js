@@ -1,7 +1,12 @@
-function Ninja(){}
+function Ninja(){
+  this.swung = false;
+  this.swingSword = function(){
+    return this.swung;
+  };
+}
 
 Ninja.prototype.swingSword = function(){
-  return true;
+  return !this.swung;
 };
 
 var ninja1 = Ninja();
