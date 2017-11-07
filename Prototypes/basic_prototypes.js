@@ -23,3 +23,7 @@ Ninja.prototype.doubleSwing = function () {
 
 console.log(ninja2.doubleSwing());
 
+// This is pretty much what the engine does to fetch a property on a JS object:
+// 1. It searches the object itself to see if it contains the property, if not
+// 2. It searches the prototype of the object to see if it contains the property, if not
+// 3. Return undefined.
