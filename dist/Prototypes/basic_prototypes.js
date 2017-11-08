@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 function Ninja() {
   this.swung = false;
@@ -29,4 +29,7 @@ console.log(ninja2.doubleSwing());
 // 1. It searches the object itself to see if it contains the property, if not
 // 2. It searches the prototype of the object to see if it contains the property, if not
 // 3. Return undefined.
+var obj = new Object();
+Object.prototype.property = 'sai';
+console.log(obj.property || Object.prototype.property || undefined);
 //# sourceMappingURL=basic_prototypes.js.map
