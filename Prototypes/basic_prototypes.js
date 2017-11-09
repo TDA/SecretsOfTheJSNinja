@@ -28,5 +28,9 @@ console.log(ninja2.doubleSwing());
 // 2. It searches the prototype of the object to see if it contains the property, if not
 // 3. Return undefined.
 var obj = new Object();
+// Notice how the prototype is set on the Constructor, not the object itself
+// The prototype of the object is actually undefined
 Object.prototype.property = 'sai';
-console.log(obj.property || Object.prototype.property || undefined);
+// Similarly, look at how we call the prototype on the constructor and it prints out the value.
+console.log(obj.property || undefined);
+console.log(obj.property === Object.prototype.property);
