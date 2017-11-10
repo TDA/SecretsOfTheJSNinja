@@ -34,3 +34,7 @@ Object.prototype.property = 'sai';
 // Similarly, look at how we call the prototype on the constructor and it prints out the value.
 console.log(obj.property || undefined);
 console.log(obj.property === Object.prototype.property);
+// Surpriseee!!! You can also access the property *directly* on the constructor.
+console.log(Object.prototype.property === Object.property);
+// First time I am actually using `===` more than once in a statement haha.
+console.log(Object.prototype.property === Object.property === obj.property !== (obj.prototype && obj.prototype.property));
