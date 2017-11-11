@@ -60,4 +60,12 @@ var mail = 'hello to everyone';
     fn();
   };
 })();
+
+var printHorizontalRule = function printHorizontalRule() {
+  console.log("------------------------------------------------------------");
+};
+
+module.exports = {
+  printHorizontalRule: printHorizontalRule
+};
 //# sourceMappingURL=lib.js.map

@@ -1,5 +1,7 @@
 'use strict';
 
+lib = require('../lib');
+
 function Ninja() {
   this.swung = false;
   this.swingSword = function () {
@@ -24,6 +26,7 @@ Ninja.prototype.doubleSwing = function () {
 };
 
 console.log(ninja2.doubleSwing());
+lib.printHorizontalRule();
 
 // This is pretty much what the engine does to fetch a property on a JS object:
 // 1. It searches the object itself to see if it contains the property, if not
@@ -37,7 +40,9 @@ Object.prototype.property = 'sai';
 console.log(obj.property || undefined);
 console.log(obj.property === Object.prototype.property);
 // Surpriseee!!! You can also access the property *directly* on the constructor.
+console.log(Object.property);
 console.log(Object.prototype.property === Object.property);
 // First time I am actually using `===` more than once in a statement haha.
 console.log(Object.prototype.property === Object.property === obj.property !== (obj.prototype && obj.prototype.property));
+lib.printHorizontalRule();
 //# sourceMappingURL=basic_prototypes.js.map

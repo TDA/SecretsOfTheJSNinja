@@ -58,3 +58,11 @@ var mail = 'hello to everyone';
     fn();
   };
 })();
+
+var printHorizontalRule = function () {
+  console.log("------------------------------------------------------------");
+};
+
+module.exports = {
+  printHorizontalRule: printHorizontalRule
+};
