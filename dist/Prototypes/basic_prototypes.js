@@ -45,4 +45,11 @@ console.log(Object.prototype.property === Object.property);
 // First time I am actually using `===` more than once in a statement haha.
 console.log(Object.prototype.property === Object.property === obj.property !== (obj.prototype && obj.prototype.property));
 lib.printHorizontalRule();
+
+// let us change some values
+// whoops, no change to the other values :O
+Object.property = 1;
+console.log(Object.property);
+console.log(Object.prototype.property);
+console.log(obj.property);
 //# sourceMappingURL=basic_prototypes.js.map
