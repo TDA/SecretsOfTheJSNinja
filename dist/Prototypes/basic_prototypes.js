@@ -42,8 +42,10 @@ console.log(obj.property === Object.prototype.property);
 // Surpriseee!!! You can also access the property *directly* on the constructor.
 console.log(Object.property);
 console.log(Object.prototype.property === Object.property);
-// First time I am actually using `===` more than once in a statement haha.
-console.log(Object.prototype.property === Object.property === obj.property !== (obj.prototype && obj.prototype.property));
+// First time I am actually using `===` more than once in a statement haha. EDIT: Apparently, doesn't work as intended
+console.log(Object.prototype.property === Object.property && Object.property === obj.property && obj.property !== (obj.prototype && obj.prototype.property));
+// Need to figure why this did not work, haha
+// console.log(Object.prototype.property === Object.property === obj.property !== (obj.prototype && obj.prototype.property));
 lib.printHorizontalRule();
 
 // let us change some values
@@ -52,4 +54,7 @@ Object.property = 1;
 console.log(Object.property);
 console.log(Object.prototype.property);
 console.log(obj.property);
+
+// But wait, what?? EDIT: nvm, just my bad `===`
+console.log(Object.prototype.property === Object.property && Object.property === obj.property && obj.property !== (obj.prototype && obj.prototype.property));
 //# sourceMappingURL=basic_prototypes.js.map
