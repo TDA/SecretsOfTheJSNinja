@@ -57,4 +57,11 @@ console.log(obj.property);
 
 // But wait, what?? EDIT: nvm, just my bad `===`
 console.log(Object.prototype.property === Object.property && Object.property === obj.property && obj.property !== (obj.prototype && obj.prototype.property));
+lib.printHorizontalRule();
+
+// What if we change the prototype instead?
+Object.prototype.property = 'maybe?';
+console.log(Object.property);
+console.log(Object.prototype.property);
+console.log(obj.property);
 //# sourceMappingURL=basic_prototypes.js.map
