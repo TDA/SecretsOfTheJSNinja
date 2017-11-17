@@ -66,3 +66,6 @@ Object.prototype.property = 'maybe?';
 console.log(Object.property);
 console.log(Object.prototype.property);
 console.log(obj.property);
+
+// So despite both `.prototype.property` and `.property` making changes to the
+// Constructor, they do not update each other. But the object instance gets the changes.
