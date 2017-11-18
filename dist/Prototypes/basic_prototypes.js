@@ -67,4 +67,10 @@ console.log(obj.property);
 
 // So despite both `.prototype.property` and `.property` making changes to the
 // Constructor, they do not update each other. But the object instance gets the changes.
+
+lib.printHorizontalRule();
+// Also, the `.constructor` property also exists for constructed objects.
+// See how the property is actually set to `1` here
+console.log(obj.constructor);
+console.log(obj.constructor.prototype);
 //# sourceMappingURL=basic_prototypes.js.map
