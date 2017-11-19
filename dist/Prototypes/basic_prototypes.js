@@ -48,7 +48,7 @@ console.log(Object.prototype.property === Object.property && Object.property ===
 // console.log(Object.prototype.property === Object.property === obj.property !== (obj.prototype && obj.prototype.property));
 lib.printHorizontalRule();
 
-// let us change some values
+console.log("let us change some values");
 // whoops, no change to the other values :O
 Object.property = 1;
 console.log(Object.property);
@@ -66,11 +66,16 @@ console.log(Object.prototype.property);
 console.log(obj.property);
 
 // So despite both `.prototype.property` and `.property` making changes to the
-// Constructor, they do not update each other. But the object instance gets the changes.
+// Constructor, they do not update each other.
+// The object instance gets *only* the prototype changes. This makes sense,
+// as the property is searched for in the prototype chain, not on the objects themselves.
+// So essentially, object.property || object.constructor.prototype.property || object.constructor.prototype.constructor.property || ...
+// => never in this chain is `object.constructor.property` checked.
 
 lib.printHorizontalRule();
-// Also, the `.constructor` property also exists for constructed objects.
+// Also, the `.constructor` property exists for constructed objects.
 // See how the property is actually set to `1` here
 console.log(obj.constructor);
+// and not here
 console.log(obj.constructor.prototype);
 //# sourceMappingURL=basic_prototypes.js.map
