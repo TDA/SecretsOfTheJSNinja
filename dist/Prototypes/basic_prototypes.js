@@ -83,4 +83,10 @@ console.log(obj.constructor.prototype);
 
 lib.assertCommandLine((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === "object", "The type of the instance is object.");
 lib.assertCommandLine(_typeof(obj.constructor) === "object", "The type of the instance is object.");
+
+var ninja = new Ninja();
+var ninjaCopy = new ninja.constructor();
+
+lib.assertCommandLine(ninjaCopy instanceof Ninja, 'It is a ninja jajajaja');
+lib.assertCommandLine(ninja !== ninja2, "But not the same Ninja!");
 //# sourceMappingURL=basic_prototypes.js.map
