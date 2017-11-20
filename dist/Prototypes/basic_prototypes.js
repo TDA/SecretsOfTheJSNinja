@@ -1,5 +1,7 @@
 'use strict';
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
 lib = require('../lib');
 
 function Ninja() {
@@ -78,4 +80,7 @@ lib.printHorizontalRule();
 console.log(obj.constructor);
 // and not here
 console.log(obj.constructor.prototype);
+
+lib.assertCommandLine((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === "object", "The type of the instance is object.");
+lib.assertCommandLine(_typeof(obj.constructor) === "object", "The type of the instance is object.");
 //# sourceMappingURL=basic_prototypes.js.map

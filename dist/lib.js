@@ -61,11 +61,22 @@ var mail = 'hello to everyone';
   };
 })();
 
+var assertCommandLine = function assertCommandLine(value, message) {
+  'use strict';
+
+  if (value) {
+    console.log(value + ' => ' + message);
+  } else {
+    console.error(value, message);
+  }
+};
+
 var printHorizontalRule = function printHorizontalRule() {
   console.log("------------------------------------------------------------");
 };
 
 module.exports = {
+  assertCommandLine: assertCommandLine,
   printHorizontalRule: printHorizontalRule
 };
 //# sourceMappingURL=lib.js.map

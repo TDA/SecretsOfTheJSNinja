@@ -59,10 +59,23 @@ var mail = 'hello to everyone';
   };
 })();
 
+
+
+var assertCommandLine = function (value, message) {
+    'use strict';
+
+    if (value) {
+      console.log(`${value} => ${message}`);
+    } else {
+      console.error(value, message);
+    }
+};
+
 var printHorizontalRule = function () {
   console.log("------------------------------------------------------------");
 };
 
 module.exports = {
+  assertCommandLine: assertCommandLine,
   printHorizontalRule: printHorizontalRule
 };

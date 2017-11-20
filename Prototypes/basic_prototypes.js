@@ -80,3 +80,6 @@ lib.printHorizontalRule();
 console.log(obj.constructor);
 // and not here
 console.log(obj.constructor.prototype);
+
+lib.assertCommandLine(typeof obj === "object", "The type of the instance is object.");
+lib.assertCommandLine(typeof obj.constructor === "object", "The type of the instance is object.");
