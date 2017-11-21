@@ -85,6 +85,7 @@ lib.assertCommandLine((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) 
 lib.assertCommandLine(_typeof(obj.constructor) === "object", "The type of the instance is object.");
 
 var ninja = new Ninja();
+// Can do this even when the initial constructor definition is out of scope, this is quite magical hahaha
 var ninjaCopy = new ninja.constructor();
 
 lib.assertCommandLine(ninjaCopy instanceof Ninja, 'It is a ninja jajajaja');
