@@ -64,11 +64,7 @@ var mail = 'hello to everyone';
 var assertCommandLine = function assertCommandLine(value, message) {
   'use strict';
 
-  if (value) {
-    console.log(value + ' => ' + message);
-  } else {
-    console.error(value, message);
-  }
+  console.log(value, message);
 };
 
 var printHorizontalRule = function printHorizontalRule() {
