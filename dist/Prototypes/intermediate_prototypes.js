@@ -37,4 +37,14 @@ Object.prototype.keys = function () {
 
 var obj = { a: 1, b: 2, c: 3 };
 lib.assertCommandLine(obj.keys().length == 3, "There are three properties in this object.");
+lib.printHorizontalRule();
+
+// Gotcha 2 - Numbers
+Number.prototype.add = function (num) {
+  return this + num;
+};
+var n = 5;
+lib.assertCommandLine(n.add(3) == 8, 'Works when num is a var');
+lib.assertCommandLine(5..add(3) == 8, 'Works if num is wrapped in paranthesis :O');
+// lib.assertCommandLine(5.add(3) == 8, 'Blows up otherwise LOL');
 //# sourceMappingURL=intermediate_prototypes.js.map
