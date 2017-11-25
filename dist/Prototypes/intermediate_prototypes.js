@@ -47,4 +47,18 @@ var n = 5;
 lib.assertCommandLine(n.add(3) == 8, 'Works when num is a var');
 lib.assertCommandLine(5..add(3) == 8, 'Works if num is wrapped in paranthesis :O');
 // lib.assertCommandLine(5.add(3) == 8, 'Blows up otherwise LOL');
+
+lib.printHorizontalRule();
+// Noob issues here:
+function User(first, last) {
+  this.name = first + " " + last;
+}
+
+// OUCH, missed the `new`, and this calls it as a function, NOT a constructor
+var user = User("Ichigo", "Kurosaki");
+lib.assertCommandLine(user && user.name, 'Name is set, NOT');
+
+// even worse side-effect, introducing a global variable due to calling it as
+// a function instead of constructor :(
+lib.assertCommandLine(name === 'Ichigo Kurosaki', 'HAHAHAHA LOL');
 //# sourceMappingURL=intermediate_prototypes.js.map
