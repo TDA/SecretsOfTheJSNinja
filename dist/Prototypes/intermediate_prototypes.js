@@ -61,4 +61,16 @@ lib.assertCommandLine(user && user.name, 'Name is set, NOT');
 // even worse side-effect, introducing a global variable due to calling it as
 // a function instead of constructor :(
 lib.assertCommandLine(name === 'Ichigo Kurosaki', 'HAHAHAHA LOL');
+
+// Being ninjas, let's fix this so users don't make mistakes
+function User2(first, last) {
+  if (!(this instanceof arguments.callee)) {
+    return new User(first, last);
+  }
+
+  this.name = first + " " + last;
+}
+
+var kodaichi = User2('double', 'kodaichi');
+lib.assertCommandLine(kodaichi.name, 'Name is set');
 //# sourceMappingURL=intermediate_prototypes.js.map
