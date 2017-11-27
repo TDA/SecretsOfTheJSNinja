@@ -68,6 +68,8 @@ lib.assertCommandLine(name === 'Ichigo Kurosaki', 'HAHAHAHA LOL');
 
 // Being ninjas, let's fix this so users don't make mistakes
 function User2(first, last) {
+  // need to figure out what the modern version of this is, since eslint and jshint
+  // discourage use of arguments.callee
   if (!(this instanceof arguments.callee)) {
     return new User(first, last);
   }
