@@ -10,5 +10,18 @@
 //     return this.dancing;
 //   }
 // });
+
+// var Ninja = Person.subClass({
+//   init: function() {
+//     this._super(false);
+//   },
+//   dance: function() {
+//     // Ninja-specific stuff here
+//     return this._super();
+//   },
+//   swingSword: function() {
+//     return true;
+//   }
+// });
 "use strict";
 //# sourceMappingURL=advanced_inheritance.js.map
