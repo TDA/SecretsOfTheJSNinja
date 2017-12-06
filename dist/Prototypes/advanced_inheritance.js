@@ -36,4 +36,27 @@ var lib = require('../lib');
 // lib.assertCommandLine(!ninja.dance(), "The ninja is not dancing.");
 // lib.assertCommandLine(person instanceof Person, "Person is a Person.");
 // lib.assertCommandLine(ninja instanceof Ninja && ninja instanceof Person, "Ninja is a Ninja and a Person.");
+
+(function () {
+  'use strict';
+
+  var initializing = false;
+
+  Object.subclass = function (classMembers) {
+
+    initializing = true;
+    var proto = new this();
+    initializing = false;
+
+    for (var memberName in classMembers) {
+      // check if this is a function that makes a call to a `_super()`
+      if (typeof classMembers[memberName] === 'function' && functionCallsSuper(classMembers[memberName])) {
+        // we need special handling here
+      } else {
+          // Just copy the member
+          proto[memberName] = classMembers[memberName];
+        }
+    }
+  };
+})();
 //# sourceMappingURL=advanced_inheritance.js.map

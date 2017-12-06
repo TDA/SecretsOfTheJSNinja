@@ -35,3 +35,26 @@ var lib = require('../lib');
 // lib.assertCommandLine(!ninja.dance(), "The ninja is not dancing.");
 // lib.assertCommandLine(person instanceof Person, "Person is a Person.");
 // lib.assertCommandLine(ninja instanceof Ninja && ninja instanceof Person, "Ninja is a Ninja and a Person.");
+
+(function () {
+  'use strict';
+
+  let initializing = false;
+
+  Object.subclass = function (classMembers) {
+
+    initializing = true;
+    let proto = new this();
+    initializing = false;
+
+    for (let memberName in classMembers) {
+      // check if this is a function that makes a call to a `_super()`
+      if (typeof classMembers[memberName] === 'function' && functionCallsSuper(classMembers[memberName])) {
+        // we need special handling here
+      } else {
+        // Just copy the member
+        proto[memberName] = classMembers[memberName];
+      }
+    }
+  };
+})();
