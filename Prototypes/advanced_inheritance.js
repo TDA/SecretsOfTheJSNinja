@@ -40,8 +40,18 @@ var lib = require('../lib');
   'use strict';
 
   let initializing = false;
+  let superPattern = /\b_super\b/;
+  
+  function isFunction(fn) {
+    return typeof fn === 'function';
+  }
+
+  function functionCallsSuper() {
+    return superPattern.test(properties[name]);
+  }
 
   Object.subclass = function (classMembers) {
+    let _super = this.prototype;
 
     initializing = true;
     let proto = new this();
@@ -49,8 +59,9 @@ var lib = require('../lib');
 
     for (let memberName in classMembers) {
       // check if this is a function that makes a call to a `_super()`
-      if (typeof classMembers[memberName] === 'function' && functionCallsSuper(classMembers[memberName])) {
-        // we need special handling here
+      if (isFunction(classMembers[memberName]) && isFunction(_super[memberName]) && functionCallsSuper(classMembers[memberName])) {
+        // we need special handling here, this calls super, so we need to execute super first and then set this to execute after that
+        // Pretty much simulating `super` keyword in other languages (and ES6+) :)
       } else {
         // Just copy the member
         proto[memberName] = classMembers[memberName];
