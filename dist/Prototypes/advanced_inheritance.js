@@ -61,12 +61,16 @@ var lib = require('../lib');
     for (var memberName in classMembers) {
       // check if this is a function that makes a call to a `_super()`
       if (isFunction(classMembers[memberName]) && isFunction(_super[memberName]) && functionCallsSuper(classMembers[memberName])) {
-        // we need special handling here, this calls super, so we need to execute super first and then set this to execute after that
+        // we need special handling here, this calls super, so we need to
+        // a. execute super first and then
+        // b. set this to execute after that and return the value
         // Pretty much simulating `super` keyword in other languages (and ES6+) :)
+        // We need to return a new wrapped function that does a & b.
+        (function (name, fn) {})(memberName, classMembers[memberName]);
       } else {
-          // Just copy the member
-          proto[memberName] = classMembers[memberName];
-        }
+        // Just copy the member
+        proto[memberName] = classMembers[memberName];
+      }
     }
   };
 })();
