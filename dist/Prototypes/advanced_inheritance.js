@@ -66,7 +66,21 @@ var lib = require('../lib');
         // b. set this to execute after that and return the value
         // Pretty much simulating `super` keyword in other languages (and ES6+) :)
         // We need to return a new wrapped function that does a & b.
-        (function (name, fn) {})(memberName, classMembers[memberName]);
+        (function (name, fn) {
+          return function () {
+            // store a reference to _super
+            var tmp = this._super;
+
+            this._super = _super[name];
+            // Set context of the called method
+            var returnedFunction = fn.apply(this, arguments);
+
+            // Reset the _super method
+            this._super = tmp;
+
+            return returnedFunction;
+          };
+        })(memberName, classMembers[memberName]);
       } else {
         // Just copy the member
         proto[memberName] = classMembers[memberName];
