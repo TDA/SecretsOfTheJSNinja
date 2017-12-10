@@ -55,15 +55,15 @@ var lib = require('../lib');
     var _super = this.prototype;
 
     initializing = true;
-    var proto = new this();
+    var prototype = new this();
     initializing = false;
 
     for (var memberName in classMembers) {
       // check if this is a function that makes a call to a `_super()`
       if (isFunction(classMembers[memberName]) && isFunction(_super[memberName]) && functionCallsSuper(classMembers[memberName])) {
         // we need special handling here, this calls super, so we need to
-        // a. execute super first and then
-        // b. set this to execute after that and return the value
+        // a. give the ability to call `_super` from within the subclass (expose it)
+        // b. execute the subclass method
         // Pretty much simulating `super` keyword in other languages (and ES6+) :)
         // We need to return a new wrapped function that does a & b.
         (function (name, fn) {
@@ -83,7 +83,7 @@ var lib = require('../lib');
         })(memberName, classMembers[memberName]);
       } else {
         // Just copy the member
-        proto[memberName] = classMembers[memberName];
+        prototype[memberName] = classMembers[memberName];
       }
     }
   };
