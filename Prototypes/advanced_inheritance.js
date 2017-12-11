@@ -3,15 +3,71 @@ var lib = require('../lib');
 // Let's simulate traditional inheritance with JS using prototypes
 // This will allow us to mimic something very close to React.createClass({x: y}); syntax.
 
-// e.g. here will be uncommented once we finish writing the basic struture
-// var Person = Object.subClass({
-//   init: function(isDancing) {
-//     this.dancing = isDancing;
-//   },
-//   dance: function() {
-//     return this.dancing;
-//   }
-// });
+(function () {
+  'use strict';
+
+  let initializing = false;
+  let superPattern = /\b_super\b/;
+  
+  function isFunction(fn) {
+    return typeof fn === 'function';
+  }
+
+  function functionCallsSuper(fn) {
+    return superPattern.test(fn);
+  }
+
+  Object.subClass = function (classMembers) {
+    let _super = this.prototype;
+
+    initializing = true;
+    let prototype = new this();
+    console.log(this);
+    initializing = false;
+
+    for (let memberName in classMembers) {
+      // check if this is a function that makes a call to a `_super()`
+      if (isFunction(classMembers[memberName]) && isFunction(_super[memberName]) && functionCallsSuper(classMembers[memberName])) {
+        // we need special handling here, this calls super, so we need to
+        // a. give the ability to call `_super` from within the subclass (expose it)
+        // b. execute the subclass method
+        // Pretty much simulating `super` keyword in other languages (and ES6+) :)
+        // We need to return a new wrapped function that does a & b.
+        (function (name, fn) {
+          return function () {
+            // store a reference to _super so we can restore it later
+            let tmp = this._super;
+
+            // set the new super method to be the method that exists in the superclass prototype
+            // Note that `this` is the instance here, since new function scope
+            console.log(this);
+            this._super = _super[name];
+            // Set context to this instance and execute the method
+            let returnedValue = fn.apply(this, arguments);
+
+            // Restore the _super method
+            this._super = tmp;
+
+            return returnedValue;
+          };
+        })(memberName, classMembers[memberName]);
+      } else {
+        // Just copy the member
+        prototype[memberName] = classMembers[memberName];
+      }
+    }
+  };
+})();
+
+// e.g. here will be uncommented once we finish writing the basic structure
+var Person = Object.subClass({
+  init: function(isDancing) {
+    this.dancing = isDancing;
+  },
+  dance: function() {
+    return this.dancing;
+  }
+});
 
 // var Ninja = Person.subClass({
 //   init: function() {
@@ -36,54 +92,3 @@ var lib = require('../lib');
 // lib.assertCommandLine(person instanceof Person, "Person is a Person.");
 // lib.assertCommandLine(ninja instanceof Ninja && ninja instanceof Person, "Ninja is a Ninja and a Person.");
 
-(function () {
-  'use strict';
-
-  let initializing = false;
-  let superPattern = /\b_super\b/;
-  
-  function isFunction(fn) {
-    return typeof fn === 'function';
-  }
-
-  function functionCallsSuper() {
-    return superPattern.test(properties[name]);
-  }
-
-  Object.subclass = function (classMembers) {
-    let _super = this.prototype;
-
-    initializing = true;
-    let prototype = new this();
-    initializing = false;
-
-    for (let memberName in classMembers) {
-      // check if this is a function that makes a call to a `_super()`
-      if (isFunction(classMembers[memberName]) && isFunction(_super[memberName]) && functionCallsSuper(classMembers[memberName])) {
-        // we need special handling here, this calls super, so we need to
-        // a. give the ability to call `_super` from within the subclass (expose it)
-        // b. execute the subclass method
-        // Pretty much simulating `super` keyword in other languages (and ES6+) :)
-        // We need to return a new wrapped function that does a & b.
-        (function (name, fn) {
-          return function () {
-            // store a reference to _super
-            let tmp = this._super;
-
-            this._super = _super[name];
-            // Set context of the called method
-            var returnedFunction = fn.apply(this, arguments);
-
-            // Reset the _super method
-            this._super = tmp;
-
-            return returnedFunction;
-          };
-        })(memberName, classMembers[memberName]);
-      } else {
-        // Just copy the member
-        prototype[memberName] = classMembers[memberName];
-      }
-    }
-  };
-})();
