@@ -4,10 +4,9 @@ var lib = require('../lib');
 // This will allow us to mimic something very close to React.createClass({x: y}); syntax.
 
 (function () {
-  'use strict';
 
-  let initializing = false;
-  let superPattern = /\b_super\b/;
+  var initializing = false;
+  var superPattern = /\b_super\b/;
   
   function isFunction(fn) {
     return typeof fn === 'function';
@@ -18,14 +17,14 @@ var lib = require('../lib');
   }
 
   Object.subClass = function (classMembers) {
-    let _super = this.prototype;
+    var _super = this.prototype;
 
     initializing = true;
-    let prototype = new this();
-    console.log(this);
+    var prototype = new this();
     initializing = false;
 
-    for (let memberName in classMembers) {
+    // Copy all members
+    for (var memberName in classMembers) {
       // check if this is a function that makes a call to a `_super()`
       if (isFunction(classMembers[memberName]) && isFunction(_super[memberName]) && functionCallsSuper(classMembers[memberName])) {
         // we need special handling here, this calls super, so we need to
@@ -36,14 +35,14 @@ var lib = require('../lib');
         (function (name, fn) {
           return function () {
             // store a reference to _super so we can restore it later
-            let tmp = this._super;
+            var tmp = this._super;
 
             // set the new super method to be the method that exists in the superclass prototype
             // Note that `this` is the instance here, since new function scope
-            console.log(this);
+            console.log('this?', this);
             this._super = _super[name];
             // Set context to this instance and execute the method
-            let returnedValue = fn.apply(this, arguments);
+            var returnedValue = fn.apply(this, arguments);
 
             // Restore the _super method
             this._super = tmp;
@@ -56,6 +55,19 @@ var lib = require('../lib');
         prototype[memberName] = classMembers[memberName];
       }
     }
+
+    // Now allow this to have subclassing ability as well, add its prototype etc.
+    function Class() {
+      if (!initializing && this.init) {
+        this.init.apply(this, arguments);
+      }
+    }
+
+    Class.prototype = prototype;
+    Class.constructor = Class;
+    Class.subClass = Object.subClass;
+
+    return Class;
   };
 })();
 
@@ -81,7 +93,6 @@ var Person = Object.subClass({
 //     return true;
 //   }
 // });
-
 
 // All of these should pass for us when our code is done
 // var person = new Person(true);
