@@ -81,18 +81,18 @@ var Person = Object.subClass({
   }
 });
 
-// var Ninja = Person.subClass({
-//   init: function() {
-//     this._super(false);
-//   },
-//   dance: function() {
-//     // Ninja-specific stuff here
-//     return this._super();
-//   },
-//   swingSword: function() {
-//     return true;
-//   }
-// });
+var Ninja = Person.subClass({
+  init: function() {
+    this._super(false);
+  },
+  dance: function() {
+    // Ninja-specific stuff here
+    return this._super();
+  },
+  swingSword: function() {
+    return true;
+  }
+});
 
 // All of these should pass for us when our code is done
 // var person = new Person(true);
