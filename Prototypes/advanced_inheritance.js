@@ -95,8 +95,8 @@ var Ninja = Person.subClass({
 });
 
 // All of these should pass for us when our code is done
-// var person = new Person(true);
-// lib.assertCommandLine(person.dance(), "The person is dancing.");
+var person = new Person(true);
+lib.assertCommandLine(person.dance(), "The person is dancing.");
 // var ninja = new Ninja();
 // lib.assertCommandLine(ninja.swingSword(), "The sword is swinging.");
 // lib.assertCommandLine(!ninja.dance(), "The ninja is not dancing.");
