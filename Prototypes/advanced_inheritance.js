@@ -4,9 +4,10 @@ var lib = require('../lib');
 // This will allow us to mimic something very close to React.createClass({x: y}); syntax.
 
 (function () {
+  'use strict';
 
-  var initializing = false;
-  var superPattern = /\b_super\b/;
+  let initializing = false;
+  let superPattern = /\b_super\b/;
   
   function isFunction(fn) {
     return typeof fn === 'function';
@@ -17,14 +18,14 @@ var lib = require('../lib');
   }
 
   Object.subClass = function (classMembers) {
-    var _super = this.prototype;
+    let _super = this.prototype;
 
     initializing = true;
-    var prototype = new this();
+    let prototype = new this();
     initializing = false;
 
     // Copy all members
-    for (var memberName in classMembers) {
+    for (let memberName in classMembers) {
       // check if this is a function that makes a call to a `_super()`
       if (isFunction(classMembers[memberName]) && isFunction(_super[memberName]) && functionCallsSuper(classMembers[memberName])) {
         // we need special handling here, this calls super, so we need to
@@ -35,14 +36,14 @@ var lib = require('../lib');
         (function (name, fn) {
           return function () {
             // store a reference to _super so we can restore it later
-            var tmp = this._super;
+            let tmp = this._super;
 
             // set the new super method to be the method that exists in the superclass prototype
             // Note that `this` is the instance here, since new function scope
             console.log('this?', this);
             this._super = _super[name];
             // Set context to this instance and execute the method
-            var returnedValue = fn.apply(this, arguments);
+            let returnedValue = fn.apply(this, arguments);
 
             // Restore the _super method
             this._super = tmp;

@@ -6,6 +6,7 @@ var lib = require('../lib');
 // This will allow us to mimic something very close to React.createClass({x: y}); syntax.
 
 (function () {
+  'use strict';
 
   var initializing = false;
   var superPattern = /\b_super\b/;
