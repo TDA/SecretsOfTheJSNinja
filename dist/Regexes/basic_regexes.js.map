@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../Regexes/basic_regexes.js"],"names":[],"mappings":";;AAAA,QAAQ,GAAR,CAAY,OAAO,IAAP,CAAY,KAAZ,CAAZ;;AAEA,QAAQ,GAAR,CAAY,qBAAqB,IAArB,CAA0B,2BAA1B,CAAZ","file":"basic_regexes.js","sourcesContent":["console.log(/test/.test(\"lol\"));\n\nconsole.log(/<(\\w+)>(.+?)<\\/\\1>/.test(\"<strong>whatever</strong>\"));\n"]}
