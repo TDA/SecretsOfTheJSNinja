@@ -1,12 +1,30 @@
-var timers = {
+var centralTimer = {
   timerID: 0,
-  timers: [],
+  timerCallbacks: [],
 
   add: function(fn) {
-    this.timers.push(fn);
+    this.timerCallbacks.push(fn);
   },
 
-  stopTimer: function () {
+  startCentralTimer: function () {
+    // if there is an existing central timer, don't start a new one
+    if (this.timerID) return;
+
+    (function runNextTimer() {
+      for (let i = 0; i < centralTimer.timerCallbacks.length; i++) {
+        // execute each callback, and remove it if it returns false, else
+        // continue executing it at the next available block
+        if (centralTimer.timerCallbacks[i]() === false) {
+          // remove
+          centralTimer.timerCallbacks.splice(i, 1);
+          i--;
+        }
+      }
+      centralTimer.timerID = setTimeout(runNextTimer, 0);
+    })();
+  },
+
+  stopCentralTimer: function () {
     clearTimeout(this.timerID);
     this.timerID = 0;
   }
