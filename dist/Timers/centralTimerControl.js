@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var centralTimer = {
   timerID: 0,
@@ -31,4 +31,16 @@ var centralTimer = {
     this.timerID = 0;
   }
 };
+
+centralTimer.add(function () {
+  console.log('sai');
+});
+
+centralTimer.add(function () {
+  console.log('boy');
+});
+
+centralTimer.add(function () {
+  console.log('kathrikai');
+});
 //# sourceMappingURL=centralTimerControl.js.map
