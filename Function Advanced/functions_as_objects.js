@@ -29,15 +29,15 @@ function ninja() {
   return 1;
 }
 
-console.log(store.add(ninja));
-console.log(store.add(ninja));
+console.log(store.addTimerCallback(ninja));
+console.log(store.addTimerCallback(ninja));
 console.log(store);
 
 function ninja2() {
   return 2;
 }
 
-console.log(store.add(ninja2));
+console.log(store.addTimerCallback(ninja2));
 console.log(store);
 
 
