@@ -24,6 +24,9 @@ var centralTimer = {
           i--;
         }
       }
+      // for the sole reason that the setTimeout will trigger even if there are no callbacks left.
+      if (centralTimer.timerCallbacks.length === 0) return;
+
       centralTimer.timerID = setTimeout(runNextTimer, 0);
     })();
   },
@@ -51,4 +54,9 @@ centralTimer.addTimerCallback(function () {
 });
 
 centralTimer.start();
+
+centralTimer.addTimerCallback(function () {
+  console.log(x + ' well?');
+  if (x++ >= 20) return false;
+});
 //# sourceMappingURL=centralTimerControl.js.map
