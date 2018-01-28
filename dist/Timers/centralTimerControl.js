@@ -17,7 +17,7 @@ var centralTimer = {
 
       for (var i = 0; i < centralTimer.timerCallbacks.length; i++) {
         // execute each callback, and remove it if it returns false, else
-        // continue executing it at the next available block
+        // continue executing it at the next available block - `tick` :D
         if (centralTimer.timerCallbacks[i]() === false) {
           // remove
           centralTimer.timerCallbacks.splice(i, 1);
@@ -37,6 +37,9 @@ var centralTimer = {
   }
 };
 
+// Notice the order here, this is wonderful, as we now have a way to control
+// when a timer executes because of our central timer thread, we specify the
+// order of the callbacks and control async behavior :D
 var x = 0;
 centralTimer.addTimerCallback(function () {
   console.log(x + ' sai');
