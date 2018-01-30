@@ -1,15 +1,16 @@
 var asyncTestRunner = {
   paused: false,
-  queue: [],
+  testQueue: [],
 
   addTest: function(fn) {
-    this.queue.push(fn);
+    console.log(this.testQueue);
+    this.testQueue.push(fn);
   },
 
-  runTest: function () {
-    if (!this.paused && this.queue.length > 0) {
-      // if there are tests left and test suite isnt paused, run the tests
-      var fn = this.queue.shift();
+  runTests: function () {
+    if (!this.paused && this.testQueue.length > 0) {
+      // if there are tests left and test suite isn't paused, run the tests
+      var fn = this.testQueue.shift();
       fn();
       if (!this.paused) this.resume();
     }
@@ -21,6 +22,29 @@ var asyncTestRunner = {
 
   resume: function () {
     this.paused = false;
-    setTimeout(this.runTest, 1);
+    setTimeout(this.runTests.apply(this), 10);
   }
 };
+
+var x = 0;
+asyncTestRunner.addTest(function () {
+  console.log(x++ + ' sai');
+  setTimeout(function () {
+    console.log(x + ' timed');
+  }, 0);
+});
+
+asyncTestRunner.addTest(function () {
+  console.log(x++ + ' boy');
+});
+
+asyncTestRunner.addTest(function () {
+  console.log(x++ + ' kathrikai');
+});
+
+asyncTestRunner.addTest(function () {
+  console.log(x++ + ' well?');
+});
+
+
+asyncTestRunner.runTests();
