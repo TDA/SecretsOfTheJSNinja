@@ -31,8 +31,10 @@ var asyncTestRunner = {
 var x = 0;
 asyncTestRunner.addTest(function () {
   console.log(x++ + ' sai');
+  asyncTestRunner.pause();
   setTimeout(function () {
     console.log(x + ' timed');
+    asyncTestRunner.resume();
   }, 0);
 });
 
