@@ -18,10 +18,13 @@ var asyncTestRunner = {
     }
   },
 
+  // Call the pause when you have async operations in a test
   pause: function pause() {
     this.paused = true;
   },
 
+  // Call resume after the async behavior is done, this way, the test order
+  // can be maintained, pretty much emulating `await` :D
   resume: function resume() {
     this.paused = false;
     setTimeout(this.runTests.apply(this), 10);
